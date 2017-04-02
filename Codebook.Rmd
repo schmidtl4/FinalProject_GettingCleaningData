@@ -11,7 +11,7 @@ dffinal was then cleaned and tidied.  We eliminated meaningless '()' in the titl
 Finally, we grouped the data frame by subjectid, activity, instrument, signal, jerk, magnitude, domain, measure, and axis so that we could calculate a mean for each subject, activity and mean or standard deviation measurement.
 
 # Data dictionary
-In the final_df.csv file (final_df variable in the script), the data has the following names and descriptions:
+In the final_df.txt file (final_df variable in the script), the data has the following names and descriptions:
 
 | Variable name	  | Description |
 |-----------------|----------------------------------------------------------------------------------------|
