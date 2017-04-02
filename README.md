@@ -24,4 +24,11 @@ These steps are documented in the run_analysis.R script in this repository.
 ### Final Data
 The format chosen for the final data output conforms to the principles of tidy data.  Each row represnts an observation.  Each column represents one variable. Additional fixed values known in advance of the observations are in the left-most columns whereas columns containing the collected values appear at the right.  It was deemed that the "tall, skinny" format for the data made it easiest to summarize and present the final, calculated values.
 
-The final file can be found in this repository: final_df.txt
+### Steps to reproduce this project
+* Open the R script run_analysis.r using a text editor.
+* Change the parameter of the localwd variable.
+* Save run_analysis.r in the localwd folder.
+* Run the R script run_analysis.r. 
+
+### Outputs produced
+Tidy dataset file final_df.txt (tab-delimited text)
