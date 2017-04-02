@@ -14,9 +14,10 @@ The approach used in completing this project follows the outlines for the projec
 2. Loading the data into R
 3. Merging several datasets
 4. Selecting the relevant columns
-5. Renaming columns for clarity and organizing ("tidying") the data appropriately.
-6. Summarizing and calculating the values required for output.
-7. Saving the final results file locally.
+5. Replace numeric values for the activities with more readable labels.
+6. Renaming columns for clarity and organizing ("tidying") the data appropriately.
+7. Summarizing and calculating the values required for output.
+8. Saving the final results file locally.
 
 These steps are documented in the run_analysis.R script in this repository.
 
