@@ -31,4 +31,4 @@ The format chosen for the final data output conforms to the principles of tidy d
 * Run the R script run_analysis.r. 
 
 ### Outputs produced
-Tidy dataset file: final_df.csv (comma-delimited text)
+Tidy dataset file: final_df.txt (created using the write.table() function with row.names = FALSE)
