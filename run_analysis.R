@@ -1,5 +1,5 @@
-##Getting and Cleaning Data Course Project
-##load libraries
+## Getting and Cleaning Data Course Project
+## load libraries
 library(readr)
 library(dplyr)
 
@@ -36,15 +36,15 @@ activitylabels <- read.csv(
     sep="",header=FALSE)
 
 
-##Step 3: Merge training and test data sets into one
-##testx,testy and testsubject are randomly selected data from the total population (30%)
-##trainx,trainy and trainsubject are randomly selected data from the total population (70%)
-##this step recombines the two parts into one unified set (i.e. the total population)
+## Step 3: Merge training and test data sets into one
+## testx,testy and testsubject are randomly selected data from the total population (30%)
+## trainx,trainy and trainsubject are randomly selected data from the total population (70%)
+## this step recombines the two parts into one unified set (i.e. the total population)
     allx <-rbind(testx,trainx)
     ally <-rbind(testy,trainy)
     allsubject <-rbind(testsubject,trainsubject)
     
-##Step 4: Select relevant columns: extract the mean and standard deviation for each measurement.  Additionally, combine the activity and subject identifiers to the data and label appropriate
+## Step 4: Select relevant columns: extract the mean and standard deviation for each measurement.  Additionally, combine the activity and subject identifiers to the data and label appropriate
 
     #label columns in allx to allow proper extraction
     names(allx) <- features$V2
@@ -64,10 +64,10 @@ activitylabels <- read.csv(
     names(dffinal)[2] <- 'activity'
     
 
-##Step 5: name the activities in the data set
+## Step 5: Replace numeric values for the activities with readable labels
     dffinal$activity <- activitylabels[,2][match(dffinal$activity,activitylabels[,1])]
 
-##Step 4: label the data set with descriptive variable names
+## Step 6: label the data set with descriptive variable names,and further tidy the data
 #tidy the data set - create columns from colnames (warnings about too few values in some rows are expected)
     dffinal <- dffinal %>% 
         gather(measure,value,-subjectid,-activity) %>%
@@ -77,11 +77,11 @@ activitylabels <- read.csv(
 #sort data set by subjectid and activity in asc order
     dffinal <- arrange(dffinal,subjectid,activity)
 
-##Step5: create a tidy data set with the average of each variable for each activity and
+## Step7: Summarize and calculate averages for all values.  Create a tidy data set with the average of each variable for each activity and
 ## each subject.
     dffinalgrp <- group_by(dffinal,subjectid,activity,feature,axis)
     final_df <- summarize(dffinalgrp,count=n(),average = mean(value))
 
-##save result
+## Step 8: save result
     write.csv(final_df,"~/R_Projects/projectData/UCI HAR Dataset/final_df.txt",fileEncoding = "UTF-8")
     
