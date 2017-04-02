@@ -1,5 +1,17 @@
 # Codebook
-This Codebook explains the various variables and data used in the run_analysis.R script.  In the final_df.csv file, the data has the following names and descriptions:
+This Codebook explains the various variables and data used in the run_analysis.R script.  
+
+# Data transformation
+The raw data was downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip .  As indicated by the originators of the data, the data had been randomly split into 'test' and 'train' data, but was otherwise all part of one project.  
+
+The first step was to recombine the test and train data into 'like' files.  We combined the X_test data with the X_train data, the y_test data with the y_train data and the subject_test data with the subject_train.  With these three master files in hand, each consisting of 10,299 rows, we combined the files using cbind into one data frame (dffinal in the script).  
+
+dffinal was then cleaned and tidied.  We eliminated meaningless '()' in the titles.  In adherence with tidy principles, we separated values that were baked into column titles (eg., tBodyGyroJerk-XYZ) into separate columns for domain, signal, instrument, jerk and axis.  Additionally, we replaced numeric values for the activities with their respective labels and replaced "t" and "f" in the domain columns with "time" and "frequency" respectively.
+
+Finally, we grouped the data frame by subjectid, activity, instrument, signal, jerk, magnitude, domain, measure, and axis so that we could calculate a mean for each subject, activity and mean or standard deviation measurement.
+
+# Data dictionary
+In the final_df.csv file (final_df variable in the script), the data has the following names and descriptions:
 
 | Variable name	  | Description |
 |-----------------|----------------------------------------------------------------------------------------|
@@ -18,6 +30,7 @@ This Codebook explains the various variables and data used in the run_analysis.R
 
 # Dataset structure
 R code: ``` str(final_df) ```
+The final result is an 11880 x 11 data.frame:
 ```
 'data.frame':	11880 obs. of  11 variables:
  $ subjectid : int  1 1 1 1 1 1 1 1 1 1 ...
