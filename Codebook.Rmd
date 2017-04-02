@@ -1,3 +1,61 @@
 # Codebook
-This Codebook explains the various variables and data used in the run_analysis.R script.
+This Codebook explains the various variables and data used in the run_analysis.R script.  In the final_df.csv file, the data has the following names and descriptions:
+
+| Variable name	  | Description |
+|-----------------|----------------------------------------------------------------------------------------|
+| subjectid  | The ID number associated with the subject who performed the activity for each observation. Its range is from 1 to 30. |
+| activity	 | The name of the activity.  There are six:  WALKING, LAYING, SITTING, STANDING, WALKING_DOWNSTAIRS and WALKING_UPSTAIRS. |
+| instrument | The name of the instrument that collected the information ("Acc" - acceleromter OR "Gyro" - gyroscope) |
+| signal     | The name of the measurement being taken.  There are three possible values:  "Body", "Gravity" OR "BodyBody". "Body" and "Gravity" are components of the sensor acceleration signal.  "BodyBody" is not explained in the original data.   |
+| jerk | Indicates whether or not the data was from a Jerk signal. |
+| magnitude |  The magnitude of the three-dimensional signals, calculated using the Euclidean norm. |
+| domain     | The domain from which the data originated ("time" - a time series OR "frequency" - frequencies) |
+| measure    | Identifies what is being measured: the "mean" (the arithmetic average) or the "std" (i.e., standard deviation) |
+| axis       | Identifies which of three axes are being measured: X, Y or Z.  Some measures do not have an axis. |
+| value      | The observed value for the particular subject, activity, instrument, feature, domain, measure and axis. |
+| count      | The number of observations for that value. Used in the computation of the average.| 
+| average    | The calculated average of all of the data points having the same set of values in the leftmost columns. |
+
+# Dataset structure
+R code: ``` str(final_df) ```
+```
+'data.frame':	11880 obs. of  11 variables:
+ $ subjectid : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ activity  : Factor w/ 6 levels "LAYING","SITTING",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ instrument: Factor w/ 2 levels "Acc","Gyro": 1 1 1 1 1 1 1 1 1 1 ...
+ $ signal    : Factor w/ 3 levels "Body","BodyBody",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ jerk      : Factor w/ 1 level "Jerk": 1 1 1 1 1 1 1 1 1 1 ...
+ $ magnitude : Factor w/ 2 levels "","Mag": 1 1 1 1 1 1 1 1 1 1 ...
+ $ domain    : Factor w/ 2 levels "frequency","time": 1 1 1 1 1 1 2 2 2 2 ...
+ $ measure   : Factor w/ 2 levels "mean","std": 1 1 1 2 2 2 1 1 1 2 ...
+ $ axis      : Factor w/ 3 levels "X","Y","Z": 1 2 3 1 2 3 1 2 3 1 ...
+ $ count     : int  50 50 50 50 50 50 50 50 50 50 ...
+ $ average   : num  -0.957 -0.922 -0.948 -0.964 -0.932 ...
+ ```
+ # Row structure of final_df
+ R code: ``` head(final_df,n=3) ```
+ ```
+  subjectid activity instrument signal jerk magnitude    domain measure axis count    average
+1         1   LAYING        Acc   Body Jerk           frequency    mean    X    50 -0.9570739
+2         1   LAYING        Acc   Body Jerk           frequency    mean    Y    50 -0.9224626
+3         1   LAYING        Acc   Body Jerk           frequency    mean    Z    50 -0.9480609
+```
+# Variables summary
+R code: ```summary(final_df)```
+```
+   subjectid                  activity    instrument       signal       jerk      magnitude  
+ Min.   : 1.0   LAYING            :1980   Acc :7200   Body    :9360   Jerk:4680       :3240  
+ 1st Qu.: 8.0   SITTING           :1980   Gyro:4680   BodyBody:1080   NA's:7200   Mag :1440  
+ Median :15.5   STANDING          :1980               Gravity :1440               NA's:7200  
+ Mean   :15.5   WALKING           :1980                                                      
+ 3rd Qu.:23.0   WALKING_DOWNSTAIRS:1980                                                      
+ Max.   :30.0   WALKING_UPSTAIRS  :1980                                                      
+       domain     measure       axis          count          average        
+ frequency:4680   mean:5940   X   :2880   Min.   :36.00   Min.   :-0.99767  
+ time     :7200   std :5940   Y   :2880   1st Qu.:49.00   1st Qu.:-0.96205  
+                              Z   :2880   Median :54.50   Median :-0.46989  
+                              NA's:3240   Mean   :57.22   Mean   :-0.48436  
+                                          3rd Qu.:63.25   3rd Qu.:-0.07836  
+                                          Max.   :95.00   Max.   : 0.97451 
+```
 
